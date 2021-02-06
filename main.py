@@ -4,7 +4,7 @@ api_adress = 'http://api.openweathermap.org/data/2.5/weather?q=Sintra&APPID=' + 
 json_data = requests.get(api_adress).json()
 wind_deg = json_data['wind']['deg']
 wind_speed = 1.94384449 * json_data['wind']['speed'] # 1 m/s  = 1.94384449 kts
-
+temp = json_data['main']['temp'] - 273.15
 if (348.75 <= wind_deg < 360 or 0 <= wind_deg < 11.25 ):
     direction = 'N'
 elif (11.25 <= wind_deg < 33.75):
@@ -38,6 +38,7 @@ elif (303.75 <= wind_deg < 326.25):
 elif (326.25 <= wind_deg < 348.75):
     direction = 'NNO'
 
-print(int(wind_speed))
-print(wind_deg)
+print(str(int(wind_speed))+' KTS')
+print(str(wind_deg) + 'º')
 print(direction)
+print(str(int(temp))+'ºC')
